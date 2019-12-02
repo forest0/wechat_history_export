@@ -5,6 +5,13 @@
 **目前仅在macOS上测试了**，不确定其它平台的聊天记录也在AES加密的sqlite3数据库中，
 如果一样的话应该也可以使用这个方法，欢迎PR。
 
+## demo
+
+提供了一个demo，在`demo.py`，
+这**不是开箱即用**的脚本，你可能需要自己动手。
+
+或许后续你可以使用[pysqlcipher](https://github.com/leapcode/pysqlcipher)。
+
 ## 一些信息
 
 假设微信信息存放在目录`wechat_root=~/Library/Containers/com.tencent.xinWeChat/Data/Library/Application Support/com.tencent.xinWeChat/xxx_version/xxx`下的相关AES加密的sqlite3数据库文件中：
