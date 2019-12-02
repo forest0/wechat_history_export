@@ -69,7 +69,7 @@ cp msg_0.db msg_0.db-shm msg_0.db-wal wd/
 cd wd
 
 # open encrypted database by sqlcipher
-sqlcipher wccontact_new2.db
+sqlcipher msg_0.db
 
 # set decryption parameter in sqlcipher
 PRAGMA key = "x'your_aes_key_here'";
