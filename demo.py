@@ -9,7 +9,7 @@ import hashlib
 
 # your wechat root directory here
 wechat_root = os.path.expanduser('~/Library/Containers/com.tencent.xinWeChat/Data/Library/Application Support/com.tencent.xinWeChat/xxx_version/xxx')
-db_dir = 'db'
+db_dir = 'wechat_history_export_plain_dbs'
 # your wechat key here
 wechat_raw_key = 'your_aes_key_here'
 
@@ -29,9 +29,6 @@ class DAO(object):
         return self._cursor
 
 def copy_db_files():
-    shutil.rmtree(db_dir, ignore_errors=True)
-    os.mkdir(db_dir)
-
     dirs = ['Message', 'Group', 'Contact']
     for d in dirs:
         for f in os.listdir(os.path.join(wechat_root, d)):
@@ -135,9 +132,20 @@ def export_chat_history_by_remark(remark, group=False):
 def remove_db_files():
     shutil.rmtree(db_dir)
 
+def prepare_db_dir():
+    if os.path.exists(db_dir):
+        logging.debug('removing existing db_dir "{}"'.format(db_dir))
+        shutil.rmtree(db_dir)
+    else:
+        os.mkdir(db_dir)
+
+
 if __name__ == "__main__":
     logging.basicConfig(level=logging.DEBUG,
         format='%(asctime)s %(filename)s: [%(levelname)s] %(message)s')
+
+    prepare_db_dir()
+
     copy_db_files()
     merge_wal_and_decrypt_all()
 
