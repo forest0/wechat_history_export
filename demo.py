@@ -106,8 +106,8 @@ def get_dbname_and_tablename_contains_chat_hash(chat_hash):
             if this_hash == chat_hash:
                 logging.debug('chat hash "{}" found: database: "{}", table: "{}"'
                         .format(chat_hash, db_name, table_name))
-                return [db_name, table_name]
-    return None
+                return db_name, table_name
+    return None, None
 
 def export_table(db_name, table_name, csv_name):
     export_cmd = """
