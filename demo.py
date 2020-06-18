@@ -136,8 +136,7 @@ def prepare_db_dir():
     if os.path.exists(db_dir):
         logging.debug('removing existing db_dir "{}"'.format(db_dir))
         shutil.rmtree(db_dir)
-    else:
-        os.mkdir(db_dir)
+    os.mkdir(db_dir)
 
 
 if __name__ == "__main__":
